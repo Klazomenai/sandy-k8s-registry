@@ -1,10 +1,10 @@
 # Overview
 
 Welcome to Sandy the sandpit. The end goal is a Kafka cluster with Docker and Kubernetes. Ordering of the individual components is important. Hand cranked deployments for now. [Concourse](http://www.concourse.ci) soon.
-[sandy-k8s-registry/README.md(this)](https://github.com/Klazomenai/sandy-k8s-registry)  Configuring k8s cluster and starting up a Docker registry
-[sandy-puppetserver/README.md](https://github.com/Klazomenai/sandy-puppetserver) Configuring the puppetserver
-[sandy-zookeeper/README.md](https://github.com/Klazomenai/sandy-zookeeper) Zookeper for Kafka. [Why?](https://stackoverflow.com/questions/23751708/kafka-is-zookeeper-a-must)
-[sandy-kafka/README.md](https://github.com/Klazomenai/sandy-kafka) Kafka cluster
+- [sandy-k8s-registry/README.md(this)](https://github.com/Klazomenai/sandy-k8s-registry)  Configuring k8s cluster and starting up a Docker registry
+- [sandy-puppetserver/README.md](https://github.com/Klazomenai/sandy-puppetserver) Configuring the puppetserver
+- [sandy-zookeeper/README.md](https://github.com/Klazomenai/sandy-zookeeper) Zookeper for Kafka. [Why?](https://stackoverflow.com/questions/23751708/kafka-is-zookeeper-a-must)
+- [sandy-kafka/README.md](https://github.com/Klazomenai/sandy-kafka) Kafka cluster
 
 # Environment
 
