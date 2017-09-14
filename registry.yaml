@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: registry
+  labels:
+    run: registry
+  namespace: default
+  generation: 1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: registry
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: registry
+    spec:
+      containers:
+      - name: registry
+        image: registry:2
+        ports:
+        - containerPort: 5000
+          hostPort: 5000
+          protocol: TCP
+      hostname: registry
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry
+  labels:
+    run: registry
+  namespace: default
+spec: 
+  type: ClusterIP
+  ports:
+  - port: 5000
+    targetPort: 5000
+    protocol: TCP
+  selector:
+    run: registry
+  sessionAffinity: None
+status:
+  loadBalancer: {}
