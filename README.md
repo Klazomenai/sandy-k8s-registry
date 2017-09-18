@@ -8,24 +8,18 @@ Welcome to Sandy the sandpit. The end goal is a Kafka cluster with Docker and Ku
 
 # Environment
 
-Centos 7 host, Centos 6.9 guest
+Ubuntu 17.04, Centos 6.9 guest. Using the bloated Centos 6.9 image as those were the initial requirements. Will eventually move to a more streamlined base image.
 
 # It's hand cranking time :(
 
-```sh
-sudo yum install -y kubectl kubelet kubernetes-cni kubeadm docker docker-common
-```
+Install Docker. I'm currently using Ubuntu 17.04, instructions for Ubuntu and Docker-CE are [here](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/).
+Pick a hypervisor, install kubectl and Minikube as per the Kubernetes instructions are [here](https://kubernetes.io/docs/tasks/tools/install-minikube/).
 
 We'll be running an insecure Docker registry in the K8s cluster, add the following to `/etc/docker/daemon.json` on your local host.
 ```sh
 {
-    "insecure-registries" : ["registry:5000"]
+  "insecure-registries" : ["registry:5000"]
 }
-```
-
-```sh
-sudo systemctl enable docker
-sudo systemctl start docker
 ```
 
 Start the K8s cluster. Puppet needs quite a bit of memory, so the nodes need a minimum limit
