@@ -28,7 +28,7 @@ spec:
         - containerPort: 5000
           hostPort: 5000
           protocol: TCP
-      hostname: registry
+      hostname: registry.local
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
