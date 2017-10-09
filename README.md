@@ -13,8 +13,13 @@ Ubuntu 17.04, Centos 6.9 guest. Using the bloated Centos 6.9 image as those were
 # It's hand cranking time :(
 
  - Install Docker. Tested using Ubuntu 17.04, instructions for Ubuntu and Docker-CE are [here](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/). Also tested using Centos 7.4 and Docker-CE, instructions are [here](https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-docker-ce)
- - Install kubectl and Minikube as per the Kubernetes instructions are [here](https://kubernetes.io/docs/tasks/tools/install-minikube/).
- - Install the KVM mypervisor, so install docker-machine-kvm from [here](https://github.com/dhiltgen/docker-machine-kvm/releases)
+ - Install kubectl and Minikube as per the Kubernetes instructions are [here](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+ - Install a hypervisor, VirtualBox used for the time being. Install from [here](https://www.virtualbox.org/wiki/Linux_Downloads)
+
+ - Looks like VirtualBox requires kernel-devel
+```sh
+sudo yum -y install kernel-devel
+```
 
 We'll be running an insecure Docker registry in the K8s cluster, add the following to `/etc/docker/daemon.json` on your local host.
 ```sh
@@ -25,7 +30,7 @@ We'll be running an insecure Docker registry in the K8s cluster, add the followi
 
  - Start the K8s cluster. Puppet needs quite a bit of memory, so the nodes need a minimum limit
 ```sh
-minikube start --vm-driver kvm --memory 4096 --insecure-registry=registry.local:5000
+minikube start --memory 4096 --insecure-registry=registry:5000
 ```
 
  - Create new Docker registry on the cluster
